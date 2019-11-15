@@ -1,0 +1,23 @@
+global:
+  resolve_timeout: 5m
+  # 配置邮件发送方信息
+  smtp_smarthost: 'smtp.163.com:25'
+  smtp_from: '13585162465@163.com'
+  smtp_auth_username: '13585162465@163.com'
+  smtp_auth_password: 'aqz987456'
+  smtp_require_tls: false
+
+
+route:
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 30s
+  group_interval: 2s
+  repeat_interval: 1m
+  receiver: 'default-receiver'
+
+receivers:
+- name: 'default-receiver'
+  email_configs:
+  # 配置邮件接收方
+  - to: '13585162465@163.com'
+    send_resolved: true

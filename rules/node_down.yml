@@ -1,0 +1,11 @@
+groups:
+- name: 实例存活告警规则
+  rules:
+  - alert: localhost-instance_down
+    expr: up == 0
+    for: 1m  #持续一分钟就实现告警
+    labels:
+      user: prometheus
+      severity: warning
+    annotations:
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minutes."
